@@ -27,9 +27,9 @@ The items of the web form dropdown menus are populated by querying the batch sys
 # 
 # from jupyterhub.spawner import Spawner
 # from jupyterhub.traitlets import Command
-# from traitlets import (
-#     Integer, Unicode, Float, Dict, default
-# )
+from traitlets import (
+     Unicode, default
+)
 # 
 # from jupyterhub.utils import random_port
 # from jupyterhub.spawner import set_user_setuid
@@ -145,38 +145,38 @@ class CustomSlurmSpawner(SlurmSpawner):
         options["time"] = formdata["time"][0]
         return options
 
-    batch_script_string = "#!/bin/bash\n"
-    batch_script_string += """#SBATCH -p {partition}
-{reservation}
-#SBATCH -t {time}
-#SBATCH -n {cores}
-#SBATCH -J jupyterhub-singleuser
-##SBATCH -e "/scratch/jupyterhub-%j.out"
-##SBATCH -o "/scratch/jupyterhub-%j.out"
-#SBATCH -e "/home/{username}/jupyterhub-%j.out"
-#SBATCH -o "/home/{username}/jupyterhub-%j.out"
-#SBATCH --uid {username}
-#SBATCH --get-user-env
-#SBATCH --chdir /home/{username}
-
-module load 2019
-module load jupyterhub/1.0.0-foss-2018b-Python-3.6.6
-module load IRkernel/1.0.2-foss-2018b-R-3.5.1-Python-3.6.6
-echo "Loading jupyterlmod..."
-module load jupyterlmod/1.7.5-foss-2018b-Python-3.6.6
-echo "Jupyterlmod loaded!"
-
-jupyter nbextension install --py jupyterlmod --user
-jupyter nbextension enable --py jupyterlmod --user
-jupyter serverextension enable --py jupyterlmod --user
-
-# Pretty ugly, but need to export explicitly for now... (it is not in the PATH upon login, so can't do a 'which' on it)
-export LMOD_CMD=/hpc/eb/modules-4.0.0/libexec/modulecmd.tcl
-
-#module load ErasmusCourse/1.0-foss-2018b-R-3.5.1
-#module load cuDNN/7.6.3-CUDA-10.0.130
-
-echo "Starting notebook server..."
-{cmd}
-"""
-    batch_script = Unicode(batch_script_string).tag(config=False)
+#    batch_script_string = "#!/bin/bash\n"
+#    batch_script_string += """#SBATCH -p {partition}
+#{reservation}
+##SBATCH -t {time}
+##SBATCH -n {cores}
+##SBATCH -J jupyterhub-singleuser
+###SBATCH -e "/scratch/jupyterhub-%j.out"
+###SBATCH -o "/scratch/jupyterhub-%j.out"
+##SBATCH -e "/home/{username}/jupyterhub-%j.out"
+##SBATCH -o "/home/{username}/jupyterhub-%j.out"
+##SBATCH --uid {username}
+##SBATCH --get-user-env
+##SBATCH --chdir /home/{username}
+#
+#module load 2019
+#module load jupyterhub/1.0.0-foss-2018b-Python-3.6.6
+#module load IRkernel/1.0.2-foss-2018b-R-3.5.1-Python-3.6.6
+#echo "Loading jupyterlmod..."
+#module load jupyterlmod/1.7.5-foss-2018b-Python-3.6.6
+#echo "Jupyterlmod loaded!"
+#
+#jupyter nbextension install --py jupyterlmod --user
+#jupyter nbextension enable --py jupyterlmod --user
+#jupyter serverextension enable --py jupyterlmod --user
+#
+## Pretty ugly, but need to export explicitly for now... (it is not in the PATH upon login, so can't do a 'which' on it)
+#export LMOD_CMD=/hpc/eb/modules-4.0.0/libexec/modulecmd.tcl
+#
+##module load ErasmusCourse/1.0-foss-2018b-R-3.5.1
+##module load cuDNN/7.6.3-CUDA-10.0.130
+#
+#echo "Starting notebook server..."
+#{cmd}
+#"""
+#    batch_script = Unicode(batch_script_string).tag(config=False)

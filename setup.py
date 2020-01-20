@@ -12,7 +12,7 @@ setup(
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/sara-nl/CustomSlurmSpawner",
-    packages=setuptools.find_packages(),
+    packages=['customslurmspawner'],
     classifiers=[
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: GPLv3 License",
@@ -20,9 +20,9 @@ setup(
     ],
     python_requires='~=3.3',
     install_requires=[
-        batchspawner>=0.8.1,
-        jinja2,
-        textwrap,
-        subprocess,
+        'batchspawner>=0.8.1',
+        'jinja2',
+        'textwrap',
+        'subprocess',
     ],
 )

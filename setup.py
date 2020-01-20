@@ -23,6 +23,5 @@ setup(
         'batchspawner>=0.8.1',
         'jinja2',
         'textwrap',
-        'subprocess',
     ],
 )

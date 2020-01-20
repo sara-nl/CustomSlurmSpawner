@@ -19,4 +19,10 @@ setup(
         "Operating System :: OS Independent",
     ],
     python_requires='~=3.3',
+    install_requires=[
+        batchspawner>=0.8.1
+        jinja2
+        textwrap
+        subprocess
+    ],
 )

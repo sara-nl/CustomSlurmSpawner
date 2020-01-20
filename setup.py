@@ -22,6 +22,5 @@ setup(
     install_requires=[
         'batchspawner>=0.8.1',
         'jinja2',
-        'textwrap',
     ],
 )
